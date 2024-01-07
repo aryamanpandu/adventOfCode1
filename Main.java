@@ -1,4 +1,5 @@
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,12 +9,15 @@ public class Main {
         File file = new File("src/Input.txt");
         ArrayList<Integer> calibrationList = new ArrayList<Integer>();
 
+
         try {
             Scanner in = new Scanner(file);
 
             while (in.hasNextLine()) {
-                String intermediate = findFirstandLastDigit(in.nextLine());
-                calibrationList.add(Integer.parseInt(intermediate));
+                String intermediate1 = replaceCharsToDigits(in.nextLine());
+                String intermediate2 = findFirstandLastDigit(intermediate1);
+                System.out.println(intermediate2);
+                calibrationList.add(Integer.parseInt(intermediate2));
             }
 
             System.out.println(sumOfAllListEl(calibrationList));
@@ -37,6 +41,7 @@ public class Main {
     public static String findFirstandLastDigit(String value) {
 
         String digits = "";
+
 
         // for loop to get the first digit from the string
         for (int i = 0; i < value.length(); i++) {
@@ -68,5 +73,54 @@ public class Main {
             sum += i;
         }
         return sum;
+    }
+
+    /**
+     * This method is used to check if the String provided contains the digits in alphabetical form
+     * of one two three four
+     * five six seven eight and nine and if it does, the method replaces it
+     * with their digit number in the string
+     * @param value the string provided
+     * @return the resultant string which contains the digits and not their alphabetical form
+     */
+    public static String replaceCharsToDigits(String value) {
+        String result = "";
+        if (value.contains("one")) {
+            result = value.replace("one", "1");
+            value = result;
+        }
+        if (value.contains("two")) {
+            result = value.replace("two", "2");
+            value = result;
+        }
+        if (value.contains("three")) {
+            result = value.replace("three", "3");
+            value = result;
+        }
+        if (value.contains("four")) {
+            result = value.replace("four", "4");
+            value = result;
+        }
+        if (value.contains("five")) {
+            result = value.replace("five", "5");
+            value = result;
+        }
+        if (value.contains("six")) {
+            result = value.replace("six", "6");
+            value = result;
+        }
+        if (value.contains("seven")) {
+            result = value.replace("seven", "7");
+            value = result;
+        }
+        if (value.contains("eight")) {
+            result = value.replace("eight", "8");
+            value = result;
+        }
+        if (value.contains("nine")) {
+            result = value.replace("nine", "9");
+            value = result;
+        }
+        return result;
     }
 }
